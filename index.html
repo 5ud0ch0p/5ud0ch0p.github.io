@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="en" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SLOPCON 2026</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="/_sdk/element_sdk.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=VT323&amp;family=Share+Tech+Mono&amp;display=swap" rel="stylesheet">
+  <style>
+    @keyframes matrix-rain {
+      0% { transform: translateY(-100%); opacity: 1; }
+      100% { transform: translateY(1000%); opacity: 0; }
+    }
+    @keyframes flicker {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.8; }
+      92% { opacity: 1; }
+      94% { opacity: 0.3; }
+      96% { opacity: 1; }
+    }
+    @keyframes scan-line {
+      0% { top: 0%; }
+      100% { top: 100%; }
+    }
+    @keyframes glitch {
+      0%, 100% { transform: translate(0); }
+      20% { transform: translate(-2px, 2px); }
+      40% { transform: translate(-2px, -2px); }
+      60% { transform: translate(2px, 2px); }
+      80% { transform: translate(2px, -2px); }
+    }
+    @keyframes pulse-glow {
+      0%, 100% { box-shadow: 0 0 20px rgba(0, 255, 65, 0.5), inset 0 0 20px rgba(0, 255, 65, 0.1); }
+      50% { box-shadow: 0 0 40px rgba(0, 255, 65, 0.8), inset 0 0 30px rgba(0, 255, 65, 0.2); }
+    }
+    @keyframes typing {
+      from { width: 0; }
+      to { width: 100%; }
+    }
+    .matrix-char {
+      animation: matrix-rain 8s linear infinite;
+      font-family: 'Share Tech Mono', monospace;
+    }
+    .flicker {
+      animation: flicker 4s infinite;
+    }
+    .scan-overlay::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(to bottom, transparent, rgba(0, 255, 65, 0.3), transparent);
+      animation: scan-line 3s linear infinite;
+      pointer-events: none;
+    }
+    .glitch-text:hover {
+      animation: glitch 0.3s ease infinite;
+    }
+    .crt-effect {
+      background: 
+        repeating-linear-gradient(
+          0deg,
+          rgba(0, 0, 0, 0.15),
+          rgba(0, 0, 0, 0.15) 1px,
+          transparent 1px,
+          transparent 2px
+        );
+    }
+    .terminal-box {
+      animation: pulse-glow 3s ease-in-out infinite;
+    }
+    .typing-effect {
+      overflow: hidden;
+      white-space: nowrap;
+      border-right: 3px solid #00ff41;
+      animation: typing 2s steps(30) forwards, blink-caret 0.75s step-end infinite;
+    }
+    @keyframes blink-caret {
+      from, to { border-color: transparent; }
+      50% { border-color: #00ff41; }
+    }
+  </style>
+  <style>body { box-sizing: border-box; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+ </head>
+ <body class="h-full">
+  <div id="app-wrapper" class="w-full h-full overflow-auto relative" style="background: linear-gradient(135deg, #0a0a0a 0%, #0d1a0d 50%, #0a0a0a 100%); font-family: 'VT323', monospace;"><!-- Matrix Rain Background -->
+   <div id="matrix-bg" class="fixed inset-0 overflow-hidden pointer-events-none opacity-20" aria-hidden="true"></div><!-- CRT Overlay -->
+   <div class="fixed inset-0 crt-effect pointer-events-none z-10"></div><!-- Scan Line Overlay -->
+   <div class="fixed inset-0 scan-overlay pointer-events-none z-10"></div><!-- Main Content -->
+   <div class="relative z-20 min-h-full"><!-- Navigation -->
+    <nav class="border-b border-green-500/30 backdrop-blur-sm" style="background: rgba(0, 0, 0, 0.8);">
+     <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+      <div class="flex items-center gap-2"><span class="text-green-400 text-2xl">⌐◨-◨</span> <span class="text-green-400 text-xl tracking-widest">SLOPCON</span>
+      </div>
+      <div class="hidden md:flex gap-8 text-green-300/80 text-lg"> <a href="#about"><span class="text-green-300/80">[ABOUT]</span></a> <a href="#cfp"><span class="text-green-300/80">[CFP]</span></a>
+      </div>
+     </div>
+    </nav><!-- Hero Section -->
+    <header class="relative py-20 px-4 text-center border-b border-green-500/20">
+     <div class="max-w-4xl mx-auto">
+      <div class="mb-6 text-green-500/60 text-sm tracking-[0.3em]">
+       &gt; INITIALIZING CONFERENCE PROTOCOL...
+      </div>
+      <h1 id="hero-title" class="text-6xl md:text-8xl font-bold mb-4 flicker glitch-text" style="color: #00ff41; text-shadow: 0 0 20px #00ff41, 0 0 40px #00ff41, 0 0 60px #00ff41;">SLOPCON</h1>
+      <div class="text-green-400/80 text-xl md:text-2xl mb-2 tracking-wider">
+       [ 2 0 2 6 ]
+      </div>
+      <p id="hero-tagline" class="text-xl md:text-2xl text-green-300/90 mb-8 tracking-wide">AI Generated, Human Presented</p>
+      <div class="terminal-box inline-block border-2 border-green-500/50 rounded px-8 py-4 mb-8" style="background: rgba(0, 20, 0, 0.8);">
+       <p class="text-green-400 text-lg md:text-xl"><span class="text-green-500/60">DATE:</span> <span id="conf-date">TBD</span></p>
+       <p class="text-green-400 text-lg md:text-xl"><span class="text-green-500/60">LOCATION:</span> <span id="conf-location">TBD</span></p>
+      </div>
+      <div class="flex flex-col md:flex-row gap-4 justify-center"><a href="#cfp" class="px-8 py-3 text-xl border-2 border-green-400 text-green-400 hover:bg-green-400 hover:text-black transition-all duration-300 tracking-wider" style="background: rgba(0, 255, 65, 0.1);"> &gt; SUBMIT_CFP </a>
+      </div>
+     </div>
+    </header><!-- The Concept Section -->
+    <section id="about" class="py-16 px-4 border-b border-green-500/20">
+     <div class="max-w-4xl mx-auto">
+      <h2 class="text-4xl md:text-5xl text-center mb-12 text-green-400 tracking-wider">╔══ THE PROTOCOL ══╗</h2>
+      <div class="grid md:grid-cols-3 gap-6">
+       <div class="border border-green-500/40 p-6 rounded" style="background: rgba(0, 20, 0, 0.6);">
+        <div class="text-4xl mb-4 text-center">
+         🤖
+        </div>
+        <h3 class="text-xl text-green-400 mb-3 text-center tracking-wide">AI-GENERATED CFPs</h3>
+        <p class="text-green-300/70 text-center leading-relaxed">Every talk submission is crafted by artificial intelligence. No human wrote these abstracts. Pure algorithmic creativity.</p>
+       </div>
+       <div class="border border-green-500/40 p-6 rounded" style="background: rgba(0, 20, 0, 0.6);">
+        <div class="text-4xl mb-4 text-center">
+         ⚖️
+        </div>
+        <h3 class="text-xl text-green-400 mb-3 text-center tracking-wide">AI-REVIEWED</h3>
+        <p class="text-green-300/70 text-center leading-relaxed">Our review committee? Also AI. LLMs judging LLMs. It's slop evaluating slop. Beautiful recursive chaos.</p>
+       </div>
+       <div class="border border-green-500/40 p-6 rounded" style="background: rgba(0, 20, 0, 0.6);">
+        <div class="text-4xl mb-4 text-center">
+         👤
+        </div>
+        <h3 class="text-xl text-green-400 mb-3 text-center tracking-wide">HUMAN PRESENTERS</h3>
+        <p class="text-green-300/70 text-center leading-relaxed">Real humans present AI-generated slides with AI-written content on an AI-invented topic.</p>
+       </div>
+      </div>
+      <div class="mt-10 border border-green-500/30 p-6 rounded text-center" style="background: rgba(0, 40, 0, 0.3);">
+       <p class="text-green-400 text-lg italic">"Finally, a conference that truly represents the state of modern security research"</p>
+       <p class="text-green-500/50 mt-2">— Anonymous GPT-4 Instance</p>
+      </div>
+     </div>
+    </section><!-- CFP Section -->
+    <section id="cfp" class="py-16 px-4 border-b border-green-500/20">
+     <div class="max-w-3xl mx-auto text-center">
+      <h2 class="text-4xl md:text-5xl mb-8 text-green-400 tracking-wider">╔══ CALL FOR SLOP ══╗</h2>
+      <div class="border border-green-500/40 p-8 rounded" style="background: rgba(0, 20, 0, 0.6);">
+       <p class="text-green-300/80 text-lg mb-6 leading-relaxed">Submit your AI-generated talks! Our sophisticated AI review committee (temperature: 0.9, max_tokens: 4096) will evaluate all submissions with the same care and attention a human definitely would have.</p>
+       <div class="text-left border border-green-500/30 p-4 rounded mb-6" style="background: rgba(0, 0, 0, 0.5); font-family: 'Share Tech Mono', monospace;">
+        <p class="text-green-500/70 text-sm mb-2"># SUBMISSION REQUIREMENTS:</p>
+        <p class="text-green-400 text-sm">→ CFP content must be 100% AI-generated</p>
+		<p class="text-green-400 text-sm">→ If accepted, all slides and any speaker notes must be 100% AI-generated</p>
+        <p class="text-green-400 text-sm">→ Include the prompt used to generate the CFP response, and the model version</p>
+        <p class="text-green-400 text-sm">→ Include a contact email address</p>
+		<p class="text-green-400 text-sm">→ Include a little about the human in the loop (you), AI generation optional</p>
+       </div><a href="#" class="inline-block px-8 py-3 text-xl border-2 border-green-400 text-green-400 hover:bg-green-400 hover:text-black transition-all duration-300 tracking-wider" style="background: rgba(0, 255, 65, 0.1);"> &gt; GENERATE_SUBMISSION (TBD)</a>
+      </div>
+     </div>
+    </section><!-- Sponsors Section -->
+    <section class="py-16 px-4 border-b border-green-500/20">
+     <div class="max-w-4xl mx-auto text-center">
+      <h2 class="text-3xl mb-8 text-green-400/80 tracking-wider">// POWERED BY CORPORATE OVERLORDS //</h2>
+     </div>
+    </section><!-- Footer -->
+    <footer class="py-12 px-4 text-center" style="background: rgba(0, 0, 0, 0.5);">
+     <div class="max-w-4xl mx-auto">
+      <div class="text-5xl mb-4" style="color: #00ff41;">
+       ⌐◨-◨
+      </div>
+      <p class="text-green-400 text-xl mb-4 tracking-widest">SLOPCON 2026</p>
+      <p class="text-green-500/50 text-sm mb-6">Synthetic slides, organic panic</p>
+      </div>
+      <p class="text-green-500/30 text-xs">© 2026 SLOPCON // This website was probably AI-generated too<br>
+        No AIs were harmed in the making of this conference. Humans, however...</p>
+     </div>
+    </footer>
+   </div>
+  </div>
+  <script>
+    // Matrix rain effect
+    function createMatrixRain() {
+      const container = document.getElementById('matrix-bg');
+      const chars = 'アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン0123456789ABCDEF';
+      const columns = Math.floor(window.innerWidth / 20);
+      
+      for (let i = 0; i < columns; i++) {
+        const column = document.createElement('div');
+        column.style.cssText = `
+          position: absolute;
+          left: ${i * 20}px;
+          top: 0;
+          color: #00ff41;
+          font-size: 16px;
+          line-height: 1.2;
+          writing-mode: vertical-rl;
+          text-orientation: upright;
+        `;
+        
+        let text = '';
+        const length = Math.floor(Math.random() * 20) + 10;
+        for (let j = 0; j < length; j++) {
+          text += chars[Math.floor(Math.random() * chars.length)];
+        }
+        column.textContent = text;
+        column.className = 'matrix-char';
+        column.style.animationDelay = `${Math.random() * 5}s`;
+        column.style.animationDuration = `${5 + Math.random() * 10}s`;
+        container.appendChild(column);
+      }
+    }
+    
+    // Default configuration
+    const defaultConfig = {
+      conference_name: 'SLOPCON',
+      tagline: 'AI Generated, Human Presented',
+      date_text: 'TBD',
+      location_text: 'TBD',
+      background_color: '#0a0a0a',
+      primary_color: '#00ff41',
+      text_color: '#00ff41',
+      surface_color: '#001400',
+      accent_color: '#004d14',
+      font_family: 'VT323',
+      font_size: 16
+    };
+    
+    // Initialize Matrix rain
+    createMatrixRain();
+    
+    // Element SDK initialization
+    if (window.elementSdk) {
+      window.elementSdk.init({
+        defaultConfig,
+        onConfigChange: async (config) => {
+          const heroTitle = document.getElementById('hero-title');
+          const heroTagline = document.getElementById('hero-tagline');
+          const confDate = document.getElementById('conf-date');
+          const confLocation = document.getElementById('conf-location');
+          
+          if (heroTitle) {
+            heroTitle.textContent = config.conference_name || defaultConfig.conference_name;
+            heroTitle.style.color = config.primary_color || defaultConfig.primary_color;
+            heroTitle.style.textShadow = `0 0 20px ${config.primary_color || defaultConfig.primary_color}, 0 0 40px ${config.primary_color || defaultConfig.primary_color}`;
+          }
+          if (heroTagline) {
+            heroTagline.textContent = config.tagline || defaultConfig.tagline;
+          }
+          if (confDate) {
+            confDate.textContent = config.date_text || defaultConfig.date_text;
+          }
+          if (confLocation) {
+            confLocation.textContent = config.location_text || defaultConfig.location_text;
+          }
+          
+          // Apply font family
+          const customFont = config.font_family || defaultConfig.font_family;
+          document.body.style.fontFamily = `${customFont}, 'Share Tech Mono', monospace`;
+          
+          // Apply colors to various elements
+          const primaryColor = config.primary_color || defaultConfig.primary_color;
+          document.documentElement.style.setProperty('--primary-color', primaryColor);
+        },
+        mapToCapabilities: (config) => ({
+          recolorables: [
+            {
+              get: () => config.background_color || defaultConfig.background_color,
+              set: (value) => {
+                config.background_color = value;
+                window.elementSdk.setConfig({ background_color: value });
+              }
+            },
+            {
+              get: () => config.surface_color || defaultConfig.surface_color,
+              set: (value) => {
+                config.surface_color = value;
+                window.elementSdk.setConfig({ surface_color: value });
+              }
+            },
+            {
+              get: () => config.primary_color || defaultConfig.primary_color,
+              set: (value) => {
+                config.primary_color = value;
+                window.elementSdk.setConfig({ primary_color: value });
+              }
+            }
+          ],
+          borderables: [],
+          fontEditable: {
+            get: () => config.font_family || defaultConfig.font_family,
+            set: (value) => {
+              config.font_family = value;
+              window.elementSdk.setConfig({ font_family: value });
+            }
+          },
+          fontSizeable: {
+            get: () => config.font_size || defaultConfig.font_size,
+            set: (value) => {
+              config.font_size = value;
+              window.elementSdk.setConfig({ font_size: value });
+            }
+          }
+        }),
+        mapToEditPanelValues: (config) => new Map([
+          ['conference_name', config.conference_name || defaultConfig.conference_name],
+          ['tagline', config.tagline || defaultConfig.tagline],
+          ['date_text', config.date_text || defaultConfig.date_text],
+          ['location_text', config.location_text || defaultConfig.location_text]
+        ])
+      });
+    }
+  </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9d369eb494a1a95b',t:'MTc3MjAxNjM5Ny4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
