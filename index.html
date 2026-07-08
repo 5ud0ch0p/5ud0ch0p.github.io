@@ -138,8 +138,25 @@
           transparent 2px);
     }
 
+    :root {
+      --primary-color: #00ff41;
+    }
+
     .terminal-box {
       animation: pulse-glow 3s ease-in-out infinite;
+    }
+
+    .countdown-digit {
+      background: rgba(0, 15, 0, 0.4);
+      border: 1px solid var(--primary-color);
+      color: var(--primary-color);
+      opacity: 0.8;
+    }
+    
+    .countdown-digit-active {
+      border: 1px solid var(--primary-color);
+      box-shadow: 0 0 10px var(--primary-color);
+      opacity: 1;
     }
 
     .typing-effect {
@@ -201,12 +218,42 @@
           </div>
           <p id="hero-tagline" class="text-xl md:text-2xl text-green-300/90 mb-8 tracking-wide">AI Generated, Human
             Presented</p>
-          <div class="terminal-box inline-block border-2 border-green-500/50 rounded px-8 py-4 mb-8"
+          <div class="terminal-box inline-block border-2 border-green-500/50 rounded px-8 py-4 mb-4"
             style="background: rgba(0, 20, 0, 0.8);">
             <p class="text-green-400 text-lg md:text-xl"><span class="text-green-500/60">DATE:</span> <span
                 id="conf-date">10pm, 7th August 2026 PDT</span></p>
             <p class="text-green-400 text-lg md:text-xl"><span class="text-green-500/60">LOCATION:</span> <span
                 id="conf-location">DEF CON 34, LVCC, Las Vegas, USA</span></p>
+          </div>
+          <br>
+          <!-- Countdown Timer -->
+          <div class="terminal-box inline-block border-2 border-green-500/50 rounded px-8 py-4 mb-8"
+            style="background: rgba(0, 15, 0, 0.85);">
+            <div class="text-xs uppercase tracking-widest mb-3 opacity-60" style="color: var(--primary-color);">// COUNTDOWN TO EXECUTION //</div>
+            <div id="countdown-timer-display" class="flex justify-center items-center gap-3">
+              <div class="flex flex-col items-center">
+                <span id="days" class="countdown-digit text-3xl md:text-4xl font-bold tracking-tight px-3 py-1 rounded min-w-[3.5rem] text-center">00</span>
+                <span class="text-xs mt-1 uppercase tracking-widest opacity-50" style="color: var(--primary-color);">Days</span>
+              </div>
+              <div class="text-xl md:text-2xl font-bold mb-4 opacity-40" style="color: var(--primary-color);">:</div>
+              <div class="flex flex-col items-center">
+                <span id="hours" class="countdown-digit text-3xl md:text-4xl font-bold tracking-tight px-3 py-1 rounded min-w-[3.5rem] text-center">00</span>
+                <span class="text-xs mt-1 uppercase tracking-widest opacity-50" style="color: var(--primary-color);">Hours</span>
+              </div>
+              <div class="text-xl md:text-2xl font-bold mb-4 opacity-40" style="color: var(--primary-color);">:</div>
+              <div class="flex flex-col items-center">
+                <span id="minutes" class="countdown-digit text-3xl md:text-4xl font-bold tracking-tight px-3 py-1 rounded min-w-[3.5rem] text-center">00</span>
+                <span class="text-xs mt-1 uppercase tracking-widest opacity-50" style="color: var(--primary-color);">Mins</span>
+              </div>
+              <div class="text-xl md:text-2xl font-bold mb-4 opacity-40" style="color: var(--primary-color);">:</div>
+              <div class="flex flex-col items-center">
+                <span id="seconds" class="countdown-digit countdown-digit-active text-3xl md:text-4xl font-bold tracking-tight px-3 py-1 rounded min-w-[3.5rem] text-center">00</span>
+                <span class="text-xs mt-1 uppercase tracking-widest opacity-50" style="color: var(--primary-color);">Secs</span>
+              </div>
+            </div>
+            <div id="countdown-expired" class="hidden font-bold text-lg mt-1 animate-pulse tracking-wide" style="color: var(--primary-color);">
+              [!] CONSTRUCT LAUNCHED - ENJOY THE SLOP [!]
+            </div>
           </div>
           <div class="flex flex-col md:flex-row gap-4 justify-center"><a href="#cfp"
               class="px-8 py-3 text-xl border-2 border-green-400 text-green-400 hover:bg-green-400 hover:text-black transition-all duration-300 tracking-wider"
@@ -355,6 +402,94 @@
     // Initialize Matrix rain
     createMatrixRain();
 
+    // Countdown logic
+    let countdownInterval;
+    function startCountdown(dateText) {
+      if (countdownInterval) clearInterval(countdownInterval);
+
+      let targetTime = null;
+      try {
+        const match = dateText.match(/(\d+)\s*(am|pm),\s*(\d+)(?:st|nd|rd|th)?\s+([A-Za-z]+)\s+(\d{4})\s+([A-Z]{3,4})/i);
+        if (match) {
+          let [_, hourStr, ampm, dayStr, monthName, yearStr, tz] = match;
+          let hour = parseInt(hourStr, 10);
+          if (ampm.toLowerCase() === 'pm' && hour < 12) hour += 12;
+          if (ampm.toLowerCase() === 'am' && hour === 12) hour = 0;
+          const day = parseInt(dayStr, 10);
+          
+          const months = ['january', 'february', 'march', 'april', 'may', 'june', 'july', 'august', 'september', 'october', 'november', 'december'];
+          const monthIndex = months.indexOf(monthName.toLowerCase());
+          
+          if (monthIndex !== -1) {
+            let offset = '-07:00';
+            if (tz.toUpperCase() === 'PST') offset = '-08:00';
+            else if (tz.toUpperCase() === 'PDT') offset = '-07:00';
+            else if (tz.toUpperCase() === 'EST') offset = '-05:00';
+            else if (tz.toUpperCase() === 'EDT') offset = '-04:00';
+            else if (tz.toUpperCase() === 'UTC') offset = '+00:00';
+            
+            const monthStr = String(monthIndex + 1).padStart(2, '0');
+            const formattedDayStr = String(day).padStart(2, '0');
+            const formattedHourStr = String(hour).padStart(2, '0');
+            const isoString = `${yearStr}-${monthStr}-${formattedDayStr}T${formattedHourStr}:00:00${offset}`;
+            const parsed = new Date(isoString);
+            if (!isNaN(parsed.getTime())) {
+              targetTime = parsed.getTime();
+            }
+          }
+        }
+      } catch (e) {
+        console.error("Error parsing date:", e);
+      }
+
+      if (!targetTime) {
+        targetTime = new Date('2026-08-07T22:00:00-07:00').getTime();
+      }
+
+      function update() {
+        const now = new Date().getTime();
+        const difference = targetTime - now;
+
+        const daysEl = document.getElementById('days');
+        const hoursEl = document.getElementById('hours');
+        const minutesEl = document.getElementById('minutes');
+        const secondsEl = document.getElementById('seconds');
+        const displayEl = document.getElementById('countdown-timer-display');
+        const expiredEl = document.getElementById('countdown-expired');
+
+        if (!daysEl || !hoursEl || !minutesEl || !secondsEl) return;
+
+        if (difference <= 0) {
+          if (displayEl) displayEl.classList.add('hidden');
+          if (expiredEl) expiredEl.classList.remove('hidden');
+          daysEl.textContent = '00';
+          hoursEl.textContent = '00';
+          minutesEl.textContent = '00';
+          secondsEl.textContent = '00';
+          return;
+        }
+
+        if (displayEl) displayEl.classList.remove('hidden');
+        if (expiredEl) expiredEl.classList.add('hidden');
+
+        const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+        daysEl.textContent = String(days).padStart(2, '0');
+        hoursEl.textContent = String(hours).padStart(2, '0');
+        minutesEl.textContent = String(minutes).padStart(2, '0');
+        secondsEl.textContent = String(seconds).padStart(2, '0');
+      }
+
+      update();
+      countdownInterval = setInterval(update, 1000);
+    }
+
+    // Start with default config date text
+    startCountdown(defaultConfig.date_text);
+
     // Element SDK initialization
     if (window.elementSdk) {
       window.elementSdk.init({
@@ -375,6 +510,7 @@
           }
           if (confDate) {
             confDate.textContent = config.date_text || defaultConfig.date_text;
+            startCountdown(config.date_text || defaultConfig.date_text);
           }
           if (confLocation) {
             confLocation.textContent = config.location_text || defaultConfig.location_text;
