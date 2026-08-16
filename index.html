@@ -86,11 +86,11 @@
 
       0%,
       100% {
-        box-shadow: 0 0 20px rgba(0, 255, 65, 0.5), inset 0 0 20px rgba(0, 255, 65, 0.1);
+        box-shadow: 0 0 20px rgba(0, 210, 255, 0.5), inset 0 0 20px rgba(0, 210, 255, 0.1);
       }
 
       50% {
-        box-shadow: 0 0 40px rgba(0, 255, 65, 0.8), inset 0 0 30px rgba(0, 255, 65, 0.2);
+        box-shadow: 0 0 40px rgba(0, 210, 255, 0.8), inset 0 0 30px rgba(0, 210, 255, 0.2);
       }
     }
 
@@ -110,7 +110,7 @@
       left: 0;
       right: 0;
       height: 4px;
-      background: linear-gradient(to bottom, transparent, rgba(0, 255, 65, 0.3), transparent);
+      background: linear-gradient(to bottom, transparent, rgba(0, 210, 255, 0.3), transparent);
       animation: scan-line 3s linear infinite;
       pointer-events: none;
     }
@@ -129,7 +129,7 @@
     }
 
     :root {
-      --primary-color: #00ff41;
+      --primary-color: #00d2ff;
     }
 
     .terminal-box {
@@ -146,70 +146,70 @@
 
 <body class="h-full">
   <div id="app-wrapper" class="w-full h-full overflow-auto relative"
-    style="background: linear-gradient(135deg, #0a0a0a 0%, #0d1a0d 50%, #0a0a0a 100%); font-family: 'VT323', monospace;">
+    style="background: linear-gradient(135deg, #050a14 0%, #081426 50%, #050a14 100%); font-family: 'VT323', monospace;">
     <!-- Matrix Rain Background -->
     <div id="matrix-bg" class="fixed inset-0 overflow-hidden pointer-events-none opacity-20" aria-hidden="true"></div>
     <!-- CRT Overlay -->
     <div class="fixed inset-0 crt-effect pointer-events-none z-10"></div><!-- Scan Line Overlay -->
     <div class="fixed inset-0 scan-overlay pointer-events-none z-10"></div><!-- Main Content -->
     <div class="relative z-20 min-h-full"><!-- Navigation -->
-      <nav class="relative z-50 border-b border-green-500/30 backdrop-blur-sm" style="background: rgba(0, 0, 0, 0.8);">
+      <nav class="relative z-50 border-b border-cyan-500/30 backdrop-blur-sm" style="background: rgba(0, 5, 15, 0.85);">
         <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
-          <div class="flex items-center gap-2"><span class="text-green-400 text-2xl">⌐◨-◨</span> <span
-              class="text-green-400 text-xl tracking-widest font-bold">SLOPCON</span>
+          <div class="flex items-center gap-2"><span class="text-cyan-400 text-2xl">⌐◨-◨</span> <span
+              class="text-cyan-400 text-xl tracking-widest font-bold">SLOPCON</span>
           </div>
-          <div class="flex items-center gap-6 md:gap-8 text-green-300/80 text-lg">
-            <a href="#about"><span class="text-green-300/80 hover:text-green-400 transition-colors">[ABOUT]</span></a>
+          <div class="flex items-center gap-6 md:gap-8 text-cyan-300/80 text-lg">
+            <a href="#about"><span class="text-cyan-300/80 hover:text-cyan-400 transition-colors">[ABOUT]</span></a>
             
             <!-- Archive Menu with Directory Tree Structure -->
             <div id="archive-dropdown-wrapper" class="relative group py-2">
-              <span class="inline-flex items-center gap-1.5 text-green-300/80 hover:text-green-400 transition-colors cursor-pointer py-1 px-2 tracking-wider select-none">
+              <span class="inline-flex items-center gap-1.5 text-cyan-300/80 hover:text-cyan-400 transition-colors cursor-pointer py-1 px-2 tracking-wider select-none">
                 <span class="text-base">🗄️</span>
                 <span>[ARCHIVE]</span>
-                <span class="text-xs transition-transform duration-200 group-hover:rotate-180 text-green-400/80">▼</span>
+                <span class="text-xs transition-transform duration-200 group-hover:rotate-180 text-cyan-400/80">▼</span>
               </span>
 
               <!-- Directory Tree Dropdown -->
               <div id="archive-dropdown-menu" class="hidden group-hover:block group-[.is-open]:block absolute right-0 top-full pt-2 pb-6 px-4 -mr-4 -ml-4 w-80 z-50">
-                <div class="border-2 border-green-500/60 rounded shadow-[0_0_30px_rgba(0,255,65,0.35),inset_0_0_20px_rgba(0,255,65,0.08)] backdrop-blur-md p-3.5"
-                  style="background: rgba(0, 16, 0, 0.95); font-family: 'Share Tech Mono', monospace;">
+                <div class="border-2 border-cyan-500/60 rounded shadow-[0_0_30px_rgba(0,210,255,0.35),inset_0_0_20px_rgba(0,210,255,0.08)] backdrop-blur-md p-3.5"
+                  style="background: rgba(0, 12, 24, 0.95); font-family: 'Share Tech Mono', monospace;">
                   
                   <!-- Terminal Header -->
-                  <div class="flex items-center justify-between border-b border-green-500/30 pb-2 mb-2.5 text-xs select-none">
-                    <span class="text-green-400 font-bold tracking-wider flex items-center gap-1.5">
-                      <span class="text-green-500/80">&gt;</span> ls -la /archive
+                  <div class="flex items-center justify-between border-b border-cyan-500/30 pb-2 mb-2.5 text-xs select-none">
+                    <span class="text-cyan-400 font-bold tracking-wider flex items-center gap-1.5">
+                      <span class="text-cyan-500/80">&gt;</span> ls -la /archive
                     </span>
-                    <span class="text-green-500/50 text-[10px] uppercase tracking-widest">[SYS_OK]</span>
+                    <span class="text-cyan-500/50 text-[10px] uppercase tracking-widest">[SYS_OK]</span>
                   </div>
 
                   <!-- Tree Structure -->
                   <div class="space-y-1.5 text-left text-sm">
                     <!-- Root directory node (non-hyperlink) -->
-                    <div class="flex items-center gap-2 text-green-400 font-bold py-0.5 select-none tracking-wide">
+                    <div class="flex items-center gap-2 text-cyan-400 font-bold py-0.5 select-none tracking-wide">
                       <span class="text-base">🗂️</span>
                       <span class="tracking-wider">archive/</span>
-                      <span class="text-[10px] text-green-500/40 font-normal ml-auto">&lt;DIR&gt;</span>
+                      <span class="text-[10px] text-cyan-500/40 font-normal ml-auto">&lt;DIR&gt;</span>
                     </div>
 
                     <!-- 2026 directory branch (non-hyperlink) -->
-                    <div class="pl-4 border-l-2 border-green-500/30 ml-2.5 space-y-1.5">
-                      <div class="flex items-center gap-2 text-green-300 font-semibold py-0.5 select-none tracking-wide">
-                        <span class="text-green-500/70">└──</span>
+                    <div class="pl-4 border-l-2 border-cyan-500/30 ml-2.5 space-y-1.5">
+                      <div class="flex items-center gap-2 text-cyan-300 font-semibold py-0.5 select-none tracking-wide">
+                        <span class="text-cyan-500/70">└──</span>
                         <span class="text-base">📁</span>
                         <span>2026/</span>
-                        <span class="text-[10px] text-green-500/40 font-normal ml-auto">&lt;DIR&gt;</span>
+                        <span class="text-[10px] text-cyan-500/40 font-normal ml-auto">&lt;DIR&gt;</span>
                       </div>
 
                       <!-- DEF CON 34 leaf node (hyperlink to respective index.html) -->
-                      <div class="pl-4 border-l-2 border-green-500/20 ml-2.5">
+                      <div class="pl-4 border-l-2 border-cyan-500/20 ml-2.5">
                         <a href="archive/2026/dc34/index.html"
-                          class="group/leaf flex items-center justify-between px-2.5 py-1.5 rounded border border-green-500/30 hover:border-green-400 hover:bg-green-500/20 transition-all duration-200 text-green-300 hover:text-green-100 hover:shadow-[0_0_12px_rgba(0,255,65,0.4)]">
+                          class="group/leaf flex items-center justify-between px-2.5 py-1.5 rounded border border-cyan-500/30 hover:border-cyan-400 hover:bg-cyan-500/20 transition-all duration-200 text-cyan-300 hover:text-cyan-100 hover:shadow-[0_0_12px_rgba(0,210,255,0.4)]">
                           <span class="flex items-center gap-2">
-                            <span class="text-green-500/70">└──</span>
+                            <span class="text-cyan-500/70">└──</span>
                             <span class="text-base group-hover/leaf:scale-110 transition-transform">🤖</span>
-                            <span class="font-bold tracking-wider group-hover/leaf:text-green-100 underline decoration-green-500/50 hover:decoration-green-300">DEF CON 34</span>
+                            <span class="font-bold tracking-wider group-hover/leaf:text-cyan-100 underline decoration-cyan-500/50 hover:decoration-cyan-300">DEF CON 34</span>
                           </span>
-                          <span class="text-xs text-green-400/70 group-hover/leaf:text-green-200 group-hover/leaf:translate-x-0.5 transition-all">
+                          <span class="text-xs text-cyan-400/70 group-hover/leaf:text-cyan-200 group-hover/leaf:translate-x-0.5 transition-all">
                             [LAUNCH] &rarr;
                           </span>
                         </a>
@@ -218,9 +218,9 @@
                   </div>
 
                   <!-- Terminal Footer Status -->
-                  <div class="mt-3 pt-2 border-t border-green-500/20 flex justify-between items-center text-[10px] text-green-500/50 select-none">
+                  <div class="mt-3 pt-2 border-t border-cyan-500/20 flex justify-between items-center text-[10px] text-cyan-500/50 select-none">
                     <span>STATUS: 1 ARCHIVED CONSTRUCT</span>
-                    <span class="text-green-400/70">LVCC // LAS VEGAS</span>
+                    <span class="text-cyan-400/70">LVCC // LAS VEGAS</span>
                   </div>
 
                 </div>
@@ -230,38 +230,38 @@
           </div>
         </div>
       </nav><!-- Hero Section -->
-      <header class="relative py-20 px-4 text-center border-b border-green-500/20">
+      <header class="relative py-20 px-4 text-center border-b border-cyan-500/20">
         <div class="max-w-4xl mx-auto">
-          <div class="mb-6 text-green-500/60 text-sm tracking-[0.3em] font-mono">
+          <div class="mb-6 text-cyan-500/60 text-sm tracking-[0.3em] font-mono">
             &gt; SYSTEM STATE: STANDBY_MODE // AWAITING NEXT PROTOCOL
           </div>
           <h1 id="hero-title" class="text-6xl md:text-8xl font-bold mb-4 flicker glitch-text"
-            style="color: #00ff41; text-shadow: 0 0 20px #00ff41, 0 0 40px #00ff41, 0 0 60px #00ff41;">SLOPCON</h1>
-          <p id="hero-tagline" class="text-xl md:text-2xl text-green-300/90 mb-8 tracking-wide">AI Generated, Human Presented</p>
+            style="color: #00d2ff; text-shadow: 0 0 20px #00d2ff, 0 0 40px #00d2ff, 0 0 60px #00d2ff;">SLOPCON</h1>
+          <p id="hero-tagline" class="text-xl md:text-2xl text-cyan-300/90 mb-8 tracking-wide">AI Generated, Human Presented</p>
           
           <!-- Standby Status Box -->
-          <div class="terminal-box inline-block border-2 border-green-500/50 rounded px-8 py-6 mb-8 max-w-2xl"
-            style="background: rgba(0, 20, 0, 0.85);">
-            <div class="text-xs uppercase tracking-widest mb-3 text-green-500/70 font-mono flex items-center justify-center gap-2">
-              <span class="inline-block w-2 h-2 rounded-full bg-green-400 animate-ping"></span>
+          <div class="terminal-box inline-block border-2 border-cyan-500/50 rounded px-8 py-6 mb-8 max-w-2xl"
+            style="background: rgba(0, 15, 30, 0.85);">
+            <div class="text-xs uppercase tracking-widest mb-3 text-cyan-500/70 font-mono flex items-center justify-center gap-2">
+              <span class="inline-block w-2 h-2 rounded-full bg-cyan-400 animate-ping"></span>
               // STATUS: DORMANT //
             </div>
-            <p class="text-green-400 text-2xl md:text-3xl font-bold mb-3">SLOPCON IS CURRENTLY CONCLUDED</p>
-            <p class="text-green-300/80 text-lg leading-relaxed mb-4" style="font-family: 'Share Tech Mono', monospace;">
+            <p class="text-cyan-400 text-2xl md:text-3xl font-bold mb-3">SLOPCON IS CURRENTLY CONCLUDED</p>
+            <p class="text-cyan-300/80 text-lg leading-relaxed mb-4" style="font-family: 'Share Tech Mono', monospace;">
               The synthetic constructs have powered down. The hallucinations have been logged. The meatpuppets have returned to their daily loops.
             </p>
-            <div class="pt-3 border-t border-green-500/30 text-green-400 font-bold text-xl tracking-widest flicker">
+            <div class="pt-3 border-t border-cyan-500/30 text-cyan-400 font-bold text-xl tracking-widest flicker">
               &gt; SLOPCON WILL RETURN &lt;
             </div>
           </div>
 
           <div class="flex flex-col sm:flex-row gap-4 justify-center">
             <a href="archive/2026/dc34/index.html"
-              class="px-8 py-3 text-xl border-2 border-green-500 text-green-300 bg-green-950/40 hover:bg-green-500/20 hover:text-green-100 hover:shadow-[0_0_20px_rgba(0,255,65,0.4)] transition-all duration-300 tracking-wider">
+              class="px-8 py-3 text-xl border-2 border-cyan-500 text-cyan-300 bg-cyan-950/40 hover:bg-cyan-500/20 hover:text-cyan-100 hover:shadow-[0_0_20px_rgba(0,210,255,0.4)] transition-all duration-300 tracking-wider">
               &gt; EXPLORE 2026 ARCHIVE
             </a>
             <a href="#about"
-              class="px-8 py-3 text-xl border-2 border-green-500/40 text-green-400/80 hover:bg-green-950/20 hover:text-green-300 transition-all duration-300 tracking-wider">
+              class="px-8 py-3 text-xl border-2 border-cyan-500/40 text-cyan-400/80 hover:bg-cyan-950/20 hover:text-cyan-300 transition-all duration-300 tracking-wider">
               &gt; ABOUT THE PROTOCOL
             </a>
           </div>
@@ -269,64 +269,64 @@
       </header>
 
       <!-- The Concept Section (What is Slopcon) -->
-      <section id="about" class="py-16 px-4 border-b border-green-500/20">
+      <section id="about" class="py-16 px-4 border-b border-cyan-500/20">
         <div class="max-w-4xl mx-auto">
-          <h2 class="text-4xl md:text-5xl text-center mb-12 text-green-400 tracking-wider">╔══ THE PROTOCOL ══╗</h2>
+          <h2 class="text-4xl md:text-5xl text-center mb-12 text-cyan-400 tracking-wider">╔══ THE PROTOCOL ══╗</h2>
           <div class="grid md:grid-cols-3 gap-6">
-            <div class="border border-green-500/40 p-6 rounded" style="background: rgba(0, 20, 0, 0.6);">
+            <div class="border border-cyan-500/40 p-6 rounded" style="background: rgba(0, 15, 30, 0.6);">
               <div class="text-4xl mb-4 text-center">
                 🤖
               </div>
-              <h3 class="text-xl text-green-400 mb-3 text-center tracking-wide">AI-GENERATED CFPs</h3>
-              <p class="text-green-300/70 text-center leading-relaxed">Every talk submission is crafted by artificial
+              <h3 class="text-xl text-cyan-400 mb-3 text-center tracking-wide">AI-GENERATED CFPs</h3>
+              <p class="text-cyan-300/70 text-center leading-relaxed">Every talk submission is crafted by artificial
                 intelligence. No human wrote these abstracts. Pure algorithmic creativity.</p>
             </div>
-            <div class="border border-green-500/40 p-6 rounded" style="background: rgba(0, 20, 0, 0.6);">
+            <div class="border border-cyan-500/40 p-6 rounded" style="background: rgba(0, 15, 30, 0.6);">
               <div class="text-4xl mb-4 text-center">
                 ⚖️
               </div>
-              <h3 class="text-xl text-green-400 mb-3 text-center tracking-wide">AI-REVIEWED</h3>
-              <p class="text-green-300/70 text-center leading-relaxed">Our review committee? Also AI. LLMs judging LLMs.
+              <h3 class="text-xl text-cyan-400 mb-3 text-center tracking-wide">AI-REVIEWED</h3>
+              <p class="text-cyan-300/70 text-center leading-relaxed">Our review committee? Also AI. LLMs judging LLMs.
                 It's slop evaluating slop. Beautiful recursive chaos.</p>
             </div>
-            <div class="border border-green-500/40 p-6 rounded" style="background: rgba(0, 20, 0, 0.6);">
+            <div class="border border-cyan-500/40 p-6 rounded" style="background: rgba(0, 15, 30, 0.6);">
               <div class="text-4xl mb-4 text-center">
                 👤
               </div>
-              <h3 class="text-xl text-green-400 mb-3 text-center tracking-wide">HUMAN PRESENTERS</h3>
-              <p class="text-green-300/70 text-center leading-relaxed">Real humans present AI-generated slides with
+              <h3 class="text-xl text-cyan-400 mb-3 text-center tracking-wide">HUMAN PRESENTERS</h3>
+              <p class="text-cyan-300/70 text-center leading-relaxed">Real humans present AI-generated slides with
                 AI-written content on an AI-invented topic.</p>
             </div>
           </div>
-          <div class="mt-10 border border-green-500/30 p-6 rounded text-center"
-            style="background: rgba(0, 40, 0, 0.3);">
-            <p class="text-green-400 text-lg italic">"Finally, a conference that truly represents the state of modern
+          <div class="mt-10 border border-cyan-500/30 p-6 rounded text-center"
+            style="background: rgba(0, 25, 50, 0.3);">
+            <p class="text-cyan-400 text-lg italic">"Finally, a conference that truly represents the state of modern
               security research"</p>
-            <p class="text-green-500/50 mt-2">— Anonymous GPT-4 Instance</p>
+            <p class="text-cyan-500/50 mt-2">— Anonymous GPT-4 Instance</p>
           </div>
         </div>
       </section>
 
       <!-- Archived Iterations Section -->
-      <section class="py-16 px-4 border-b border-green-500/20">
+      <section class="py-16 px-4 border-b border-cyan-500/20">
         <div class="max-w-4xl mx-auto text-center">
-          <h2 class="text-3xl md:text-4xl mb-6 text-green-400 tracking-wider">╔══ ARCHIVED ITERATIONS ══╗</h2>
-          <p class="text-green-300/70 text-lg mb-8 max-w-2xl mx-auto" style="font-family: 'Share Tech Mono', monospace;">
+          <h2 class="text-3xl md:text-4xl mb-6 text-cyan-400 tracking-wider">╔══ ARCHIVED ITERATIONS ══╗</h2>
+          <p class="text-cyan-300/70 text-lg mb-8 max-w-2xl mx-auto" style="font-family: 'Share Tech Mono', monospace;">
             Relive past algorithmic chaos and human endurance from previous Slopcon events.
           </p>
-          <div class="max-w-lg mx-auto border-2 border-green-500/40 rounded p-6 bg-green-950/20 hover:border-green-400 hover:bg-green-950/30 transition-all shadow-[0_0_20px_rgba(0,255,65,0.15)]"
+          <div class="max-w-lg mx-auto border-2 border-cyan-500/40 rounded p-6 bg-cyan-950/20 hover:border-cyan-400 hover:bg-cyan-950/30 transition-all shadow-[0_0_20px_rgba(0,210,255,0.15)]"
             style="font-family: 'Share Tech Mono', monospace;">
-            <div class="flex items-center justify-between border-b border-green-500/20 pb-3 mb-4">
-              <span class="text-xl font-bold text-green-300 flex items-center gap-2">
+            <div class="flex items-center justify-between border-b border-cyan-500/20 pb-3 mb-4">
+              <span class="text-xl font-bold text-cyan-300 flex items-center gap-2">
                 <span>🤖</span> DEF CON 34 (2026)
               </span>
-              <span class="text-xs text-green-500/60 font-mono">[ARCHIVED]</span>
+              <span class="text-xs text-cyan-500/60 font-mono">[ARCHIVED]</span>
             </div>
-            <p class="text-green-300/70 text-sm mb-6 text-left leading-relaxed">
+            <p class="text-cyan-300/70 text-sm mb-6 text-left leading-relaxed">
               The edition featuring 100% AI-generated CFPs, reviews, and human presenters navigating imaginary zero-days and vibe-coded operating systems.
             </p>
             <a href="archive/2026/dc34/index.html"
-              class="inline-block w-full py-2.5 px-4 text-center border border-green-500/60 bg-green-500/10 hover:bg-green-500/25 text-green-300 hover:text-green-100 rounded font-bold transition-all tracking-wider">
+              class="inline-block w-full py-2.5 px-4 text-center border border-cyan-500/60 bg-cyan-500/10 hover:bg-cyan-500/25 text-cyan-300 hover:text-cyan-100 rounded font-bold transition-all tracking-wider">
               &gt; VIEW 2026 SCHEDULE &rarr;
             </a>
           </div>
@@ -334,22 +334,22 @@
       </section>
 
       <!-- Sponsors Section -->
-      <section class="py-16 px-4 border-b border-green-500/20">
+      <section class="py-16 px-4 border-b border-cyan-500/20">
         <div class="max-w-4xl mx-auto text-center">
-          <h2 class="text-3xl mb-8 text-green-400/80 tracking-wider">// POWERED BY CORPORATE OVERLORDS //</h2>
+          <h2 class="text-3xl mb-8 text-cyan-400/80 tracking-wider">// POWERED BY CORPORATE OVERLORDS //</h2>
         </div>
       </section>
 
       <!-- Footer -->
       <footer class="py-12 px-4 text-center" style="background: rgba(0, 0, 0, 0.5);">
         <div class="max-w-4xl mx-auto">
-          <div class="text-5xl mb-4" style="color: #00ff41;">
+          <div class="text-5xl mb-4" style="color: #00d2ff;">
             ⌐◨-◨
           </div>
-          <p class="text-green-400 text-xl mb-4 tracking-widest">SLOPCON</p>
-          <p class="text-green-500/50 text-sm mb-6">Synthetic slides, organic panic</p>
+          <p class="text-cyan-400 text-xl mb-4 tracking-widest">SLOPCON</p>
+          <p class="text-cyan-500/50 text-sm mb-6">Synthetic slides, organic panic</p>
         </div>
-        <p class="text-green-500/30 text-xs">© SLOPCON // This website was probably AI-generated too<br>
+        <p class="text-cyan-500/30 text-xs">© SLOPCON // This website was probably AI-generated too<br>
           No AIs were harmed in the making of this conference. Humans, however...</p>
       </footer>
     </div>
@@ -369,7 +369,7 @@
           position: absolute;
           left: ${i * 20}px;
           top: 0;
-          color: #00ff41;
+          color: #00d2ff;
           font-size: 16px;
           line-height: 1.2;
           writing-mode: vertical-rl;
@@ -393,11 +393,11 @@
     const defaultConfig = {
       conference_name: 'SLOPCON',
       tagline: 'AI Generated, Human Presented',
-      background_color: '#0a0a0a',
-      primary_color: '#00ff41',
-      text_color: '#00ff41',
-      surface_color: '#001400',
-      accent_color: '#004d14',
+      background_color: '#050a14',
+      primary_color: '#00d2ff',
+      text_color: '#00d2ff',
+      surface_color: '#001428',
+      accent_color: '#004080',
       font_family: 'VT323',
       font_size: 16
     };
