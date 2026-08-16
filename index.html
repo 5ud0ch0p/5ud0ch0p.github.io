@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SLOPCON 2026</title>
+  <title>SLOPCON — AI Generated, Human Presented</title>
   <script src="https://cdn.tailwindcss.com/3.4.17"></script>
   <script src="/_sdk/element_sdk.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -94,16 +94,6 @@
       }
     }
 
-    @keyframes typing {
-      from {
-        width: 0;
-      }
-
-      to {
-        width: 100%;
-      }
-    }
-
     .matrix-char {
       animation: matrix-rain 8s linear infinite;
       font-family: 'Share Tech Mono', monospace;
@@ -145,38 +135,6 @@
     .terminal-box {
       animation: pulse-glow 3s ease-in-out infinite;
     }
-
-    .countdown-digit {
-      background: rgba(0, 15, 0, 0.4);
-      border: 1px solid var(--primary-color);
-      color: var(--primary-color);
-      opacity: 0.8;
-    }
-    
-    .countdown-digit-active {
-      border: 1px solid var(--primary-color);
-      box-shadow: 0 0 10px var(--primary-color);
-      opacity: 1;
-    }
-
-    .typing-effect {
-      overflow: hidden;
-      white-space: nowrap;
-      border-right: 3px solid #00ff41;
-      animation: typing 2s steps(30) forwards, blink-caret 0.75s step-end infinite;
-    }
-
-    @keyframes blink-caret {
-
-      from,
-      to {
-        border-color: transparent;
-      }
-
-      50% {
-        border-color: #00ff41;
-      }
-    }
   </style>
   <style>
     body {
@@ -195,72 +153,122 @@
     <div class="fixed inset-0 crt-effect pointer-events-none z-10"></div><!-- Scan Line Overlay -->
     <div class="fixed inset-0 scan-overlay pointer-events-none z-10"></div><!-- Main Content -->
     <div class="relative z-20 min-h-full"><!-- Navigation -->
-      <nav class="border-b border-green-500/30 backdrop-blur-sm" style="background: rgba(0, 0, 0, 0.8);">
+      <nav class="relative z-50 border-b border-green-500/30 backdrop-blur-sm" style="background: rgba(0, 0, 0, 0.8);">
         <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
           <div class="flex items-center gap-2"><span class="text-green-400 text-2xl">⌐◨-◨</span> <span
-              class="text-green-400 text-xl tracking-widest">SLOPCON</span>
+              class="text-green-400 text-xl tracking-widest font-bold">SLOPCON</span>
           </div>
-          <div class="hidden md:flex gap-8 text-green-300/80 text-lg"> <a href="#about"><span
-                class="text-green-300/80">[ABOUT]</span></a> <a href="#schedule"><span
-                class="text-green-300/80">[SCHEDULE]</span></a> <a href="#cfp"><span
-                class="text-green-300/80">[CFP]</span></a>
+          <div class="flex items-center gap-6 md:gap-8 text-green-300/80 text-lg">
+            <a href="#about"><span class="text-green-300/80 hover:text-green-400 transition-colors">[ABOUT]</span></a>
+            
+            <!-- Archive Menu with Directory Tree Structure -->
+            <div id="archive-dropdown-wrapper" class="relative group py-2">
+              <span class="inline-flex items-center gap-1.5 text-green-300/80 hover:text-green-400 transition-colors cursor-pointer py-1 px-2 tracking-wider select-none">
+                <span class="text-base">🗄️</span>
+                <span>[ARCHIVE]</span>
+                <span class="text-xs transition-transform duration-200 group-hover:rotate-180 text-green-400/80">▼</span>
+              </span>
+
+              <!-- Directory Tree Dropdown -->
+              <div id="archive-dropdown-menu" class="hidden group-hover:block group-[.is-open]:block absolute right-0 top-full pt-2 pb-6 px-4 -mr-4 -ml-4 w-80 z-50">
+                <div class="border-2 border-green-500/60 rounded shadow-[0_0_30px_rgba(0,255,65,0.35),inset_0_0_20px_rgba(0,255,65,0.08)] backdrop-blur-md p-3.5"
+                  style="background: rgba(0, 16, 0, 0.95); font-family: 'Share Tech Mono', monospace;">
+                  
+                  <!-- Terminal Header -->
+                  <div class="flex items-center justify-between border-b border-green-500/30 pb-2 mb-2.5 text-xs select-none">
+                    <span class="text-green-400 font-bold tracking-wider flex items-center gap-1.5">
+                      <span class="text-green-500/80">&gt;</span> ls -la /archive
+                    </span>
+                    <span class="text-green-500/50 text-[10px] uppercase tracking-widest">[SYS_OK]</span>
+                  </div>
+
+                  <!-- Tree Structure -->
+                  <div class="space-y-1.5 text-left text-sm">
+                    <!-- Root directory node (non-hyperlink) -->
+                    <div class="flex items-center gap-2 text-green-400 font-bold py-0.5 select-none tracking-wide">
+                      <span class="text-base">🗂️</span>
+                      <span class="tracking-wider">archive/</span>
+                      <span class="text-[10px] text-green-500/40 font-normal ml-auto">&lt;DIR&gt;</span>
+                    </div>
+
+                    <!-- 2026 directory branch (non-hyperlink) -->
+                    <div class="pl-4 border-l-2 border-green-500/30 ml-2.5 space-y-1.5">
+                      <div class="flex items-center gap-2 text-green-300 font-semibold py-0.5 select-none tracking-wide">
+                        <span class="text-green-500/70">└──</span>
+                        <span class="text-base">📁</span>
+                        <span>2026/</span>
+                        <span class="text-[10px] text-green-500/40 font-normal ml-auto">&lt;DIR&gt;</span>
+                      </div>
+
+                      <!-- DEF CON 34 leaf node (hyperlink to respective index.html) -->
+                      <div class="pl-4 border-l-2 border-green-500/20 ml-2.5">
+                        <a href="archive/2026/dc34/index.html"
+                          class="group/leaf flex items-center justify-between px-2.5 py-1.5 rounded border border-green-500/30 hover:border-green-400 hover:bg-green-500/20 transition-all duration-200 text-green-300 hover:text-green-100 hover:shadow-[0_0_12px_rgba(0,255,65,0.4)]">
+                          <span class="flex items-center gap-2">
+                            <span class="text-green-500/70">└──</span>
+                            <span class="text-base group-hover/leaf:scale-110 transition-transform">🤖</span>
+                            <span class="font-bold tracking-wider group-hover/leaf:text-green-100 underline decoration-green-500/50 hover:decoration-green-300">DEF CON 34</span>
+                          </span>
+                          <span class="text-xs text-green-400/70 group-hover/leaf:text-green-200 group-hover/leaf:translate-x-0.5 transition-all">
+                            [LAUNCH] &rarr;
+                          </span>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Terminal Footer Status -->
+                  <div class="mt-3 pt-2 border-t border-green-500/20 flex justify-between items-center text-[10px] text-green-500/50 select-none">
+                    <span>STATUS: 1 ARCHIVED CONSTRUCT</span>
+                    <span class="text-green-400/70">LVCC // LAS VEGAS</span>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
       </nav><!-- Hero Section -->
       <header class="relative py-20 px-4 text-center border-b border-green-500/20">
         <div class="max-w-4xl mx-auto">
-          <div class="mb-6 text-green-500/60 text-sm tracking-[0.3em]">
-            &gt; INITIALIZING CONFERENCE PROTOCOL...
+          <div class="mb-6 text-green-500/60 text-sm tracking-[0.3em] font-mono">
+            &gt; SYSTEM STATE: STANDBY_MODE // AWAITING NEXT PROTOCOL
           </div>
           <h1 id="hero-title" class="text-6xl md:text-8xl font-bold mb-4 flicker glitch-text"
             style="color: #00ff41; text-shadow: 0 0 20px #00ff41, 0 0 40px #00ff41, 0 0 60px #00ff41;">SLOPCON</h1>
-          <div class="text-green-400/80 text-xl md:text-2xl mb-2 tracking-wider">
-            [ 2 0 2 6 ]
-          </div>
-          <p id="hero-tagline" class="text-xl md:text-2xl text-green-300/90 mb-8 tracking-wide">AI Generated, Human
-            Presented</p>
-          <div class="terminal-box inline-block border-2 border-green-500/50 rounded px-8 py-4 mb-4"
-            style="background: rgba(0, 20, 0, 0.8);">
-            <p class="text-green-400 text-lg md:text-xl"><span class="text-green-500/60">DATE:</span> <span
-                id="conf-date">10pm, 7th August 2026 PDT</span></p>
-            <p class="text-green-400 text-lg md:text-xl"><span class="text-green-500/60">LOCATION:</span> <span
-                id="conf-location">W222, L2, DEF CON 34, LVCC, Las Vegas, USA</span></p>
-          </div>
-          <br>
-          <!-- Countdown Timer -->
-          <div class="terminal-box inline-block border-2 border-green-500/50 rounded px-8 py-4 mb-8"
-            style="background: rgba(0, 15, 0, 0.85);">
-            <div class="text-xs uppercase tracking-widest mb-3 opacity-60" style="color: var(--primary-color);">// COUNTDOWN TO EXECUTION //</div>
-            <div id="countdown-timer-display" class="flex justify-center items-center gap-3">
-              <div class="flex flex-col items-center">
-                <span id="days" class="countdown-digit text-3xl md:text-4xl font-bold tracking-tight px-3 py-1 rounded min-w-[3.5rem] text-center">00</span>
-                <span class="text-xs mt-1 uppercase tracking-widest opacity-50" style="color: var(--primary-color);">Days</span>
-              </div>
-              <div class="text-xl md:text-2xl font-bold mb-4 opacity-40" style="color: var(--primary-color);">:</div>
-              <div class="flex flex-col items-center">
-                <span id="hours" class="countdown-digit text-3xl md:text-4xl font-bold tracking-tight px-3 py-1 rounded min-w-[3.5rem] text-center">00</span>
-                <span class="text-xs mt-1 uppercase tracking-widest opacity-50" style="color: var(--primary-color);">Hours</span>
-              </div>
-              <div class="text-xl md:text-2xl font-bold mb-4 opacity-40" style="color: var(--primary-color);">:</div>
-              <div class="flex flex-col items-center">
-                <span id="minutes" class="countdown-digit text-3xl md:text-4xl font-bold tracking-tight px-3 py-1 rounded min-w-[3.5rem] text-center">00</span>
-                <span class="text-xs mt-1 uppercase tracking-widest opacity-50" style="color: var(--primary-color);">Mins</span>
-              </div>
-              <div class="text-xl md:text-2xl font-bold mb-4 opacity-40" style="color: var(--primary-color);">:</div>
-              <div class="flex flex-col items-center">
-                <span id="seconds" class="countdown-digit countdown-digit-active text-3xl md:text-4xl font-bold tracking-tight px-3 py-1 rounded min-w-[3.5rem] text-center">00</span>
-                <span class="text-xs mt-1 uppercase tracking-widest opacity-50" style="color: var(--primary-color);">Secs</span>
-              </div>
+          <p id="hero-tagline" class="text-xl md:text-2xl text-green-300/90 mb-8 tracking-wide">AI Generated, Human Presented</p>
+          
+          <!-- Standby Status Box -->
+          <div class="terminal-box inline-block border-2 border-green-500/50 rounded px-8 py-6 mb-8 max-w-2xl"
+            style="background: rgba(0, 20, 0, 0.85);">
+            <div class="text-xs uppercase tracking-widest mb-3 text-green-500/70 font-mono flex items-center justify-center gap-2">
+              <span class="inline-block w-2 h-2 rounded-full bg-green-400 animate-ping"></span>
+              // STATUS: DORMANT //
             </div>
-            <div id="countdown-expired" class="hidden font-bold text-lg mt-1 animate-pulse tracking-wide" style="color: var(--primary-color);">
-              [!] CONSTRUCT LAUNCHED - ENJOY THE SLOP [!]
+            <p class="text-green-400 text-2xl md:text-3xl font-bold mb-3">SLOPCON IS CURRENTLY CONCLUDED</p>
+            <p class="text-green-300/80 text-lg leading-relaxed mb-4" style="font-family: 'Share Tech Mono', monospace;">
+              The synthetic constructs have powered down. The hallucinations have been logged. The meatpuppets have returned to their daily loops.
+            </p>
+            <div class="pt-3 border-t border-green-500/30 text-green-400 font-bold text-xl tracking-widest flicker">
+              &gt; SLOPCON WILL RETURN &lt;
             </div>
           </div>
-          <div class="flex flex-col md:flex-row gap-4 justify-center"><a href="#cfp"
-              class="px-8 py-3 text-xl border-2 border-green-500/30 text-green-500/50 hover:bg-green-950/20 hover:text-green-400 transition-all duration-300 tracking-wider"> &gt; CFP_CLOSED </a>
+
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="archive/2026/dc34/index.html"
+              class="px-8 py-3 text-xl border-2 border-green-500 text-green-300 bg-green-950/40 hover:bg-green-500/20 hover:text-green-100 hover:shadow-[0_0_20px_rgba(0,255,65,0.4)] transition-all duration-300 tracking-wider">
+              &gt; EXPLORE 2026 ARCHIVE
+            </a>
+            <a href="#about"
+              class="px-8 py-3 text-xl border-2 border-green-500/40 text-green-400/80 hover:bg-green-950/20 hover:text-green-300 transition-all duration-300 tracking-wider">
+              &gt; ABOUT THE PROTOCOL
+            </a>
           </div>
         </div>
-      </header><!-- The Concept Section -->
+      </header>
+
+      <!-- The Concept Section (What is Slopcon) -->
       <section id="about" class="py-16 px-4 border-b border-green-500/20">
         <div class="max-w-4xl mx-auto">
           <h2 class="text-4xl md:text-5xl text-center mb-12 text-green-400 tracking-wider">╔══ THE PROTOCOL ══╗</h2>
@@ -298,268 +306,60 @@
           </div>
         </div>
       </section>
-      <!-- Schedule Section -->
-      <section id="schedule" class="py-16 px-4 border-b border-green-500/20">
-        <div class="max-w-5xl mx-auto">
-          <h2 class="text-4xl md:text-5xl text-center mb-12 text-green-400 tracking-wider">╔══ RUNTIME SCHEDULE ══╗</h2>
-          <div class="border border-green-500/40 p-6 rounded overflow-x-auto" style="background: rgba(0, 20, 0, 0.6); font-family: 'Share Tech Mono', monospace;">
-            <div class="flex flex-col gap-2 md:gap-0 md:min-w-[900px]">
-              <!-- Header (hidden on mobile) -->
-              <div class="hidden md:grid grid-cols-12 gap-4 pb-4 border-b border-green-500/30 text-green-400 font-bold uppercase tracking-wider text-lg">
-                <div class="col-span-2">Time (PDT)</div>
-                <div class="col-span-5">Presentation / Title</div>
-                <div class="col-span-5">Speaker</div>
-              </div>
-              
-              <!-- Row 1: Intro -->
-              <div class="flex flex-col md:grid md:grid-cols-12 gap-2 md:gap-4 py-4 border-b border-green-500/10 items-start md:items-center hover:bg-green-500/5 transition-colors">
-                <div class="md:col-span-2 text-green-400 font-bold flex items-center gap-2">
-                  <span class="md:hidden text-xs text-green-500/50">TIME:</span>
-                  2200
-                </div>
-                <div class="md:col-span-5 text-green-300">
-                  <span class="md:hidden text-xs block text-green-500/50">TITLE:</span>
-                  Intro
-                </div>
-                <div class="md:col-span-5 text-green-500/80 md:whitespace-nowrap">
-                  <span class="md:hidden text-xs block text-green-500/50">SPEAKER:</span>
-                  Slopcon Crew
-                </div>
-              </div>
 
-              <!-- Row 2: THE √-1 DAY -->
-              <div class="flex flex-col md:grid md:grid-cols-12 gap-2 md:gap-4 py-4 border-b border-green-500/10 items-start md:items-center hover:bg-green-500/5 transition-colors">
-                <div class="md:col-span-2 text-green-400 font-bold flex items-center gap-2">
-                  <span class="md:hidden text-xs text-green-500/50">TIME:</span>
-                  2215
-                </div>
-                <div class="md:col-span-5 text-green-300">
-                  <span class="md:hidden text-xs block text-green-500/50">TITLE:</span>
-                  THE √-1 DAY: Turning Real Vulnerabilities IMAGINARY Since Runtime 🚀🔥
-                </div>
-                <div class="md:col-span-5 text-green-500/80 md:whitespace-nowrap">
-                  <span class="md:hidden text-xs block text-green-500/50">SPEAKER:</span>
-                  🤖🤖🪗🎤🫠🧠🤖🤖🪣📈, Distinguished slop artisan
-                </div>
-              </div>
-
-              <!-- Row 3: Slop Roulette -->
-              <div class="flex flex-col md:grid md:grid-cols-12 gap-2 md:gap-4 py-4 border-b border-green-500/10 items-start md:items-center hover:bg-green-500/5 transition-colors">
-                <div class="md:col-span-2 text-green-400 font-bold flex items-center gap-2">
-                  <span class="md:hidden text-xs text-green-500/50">TIME:</span>
-                  2230
-                </div>
-                <div class="md:col-span-5 text-green-300">
-                  <span class="md:hidden text-xs block text-green-500/50">TITLE:</span>
-                  <span class="flicker font-bold tracking-wider text-green-400" style="text-shadow: 0 0 8px #00ff41, 0 0 15px rgba(0,255,65,0.6);">[🎰 SLOP ROULETTE 🎰]</span>
-                </div>
-                <div class="md:col-span-5 text-green-500/80 md:whitespace-nowrap">
-                  <span class="md:hidden text-xs block text-green-500/50">SPEAKER:</span>
-                  Joe Fitzpatrick
-                </div>
-              </div>
-
-              <!-- Row 4: Agentic Rage for the Agentic Age -->
-              <div class="flex flex-col md:grid md:grid-cols-12 gap-2 md:gap-4 py-4 border-b border-green-500/10 items-start md:items-center hover:bg-green-500/5 transition-colors">
-                <div class="md:col-span-2 text-green-400 font-bold flex items-center gap-2">
-                  <span class="md:hidden text-xs text-green-500/50">TIME:</span>
-                  2245
-                </div>
-                <div class="md:col-span-5 text-green-300">
-                  <span class="md:hidden text-xs block text-green-500/50">TITLE:</span>
-                  Agentic Rage for the Agentic Age
-                </div>
-                <div class="md:col-span-5 text-green-500/80 md:whitespace-nowrap">
-                  <span class="md:hidden text-xs block text-green-500/50">SPEAKER:</span>
-                  Eric Evenchick
-                </div>
-              </div>
-
-              <!-- Row 5: SadGirl.exe -->
-              <div class="flex flex-col md:grid md:grid-cols-12 gap-2 md:gap-4 py-4 border-b border-green-500/10 items-start md:items-center hover:bg-green-500/5 transition-colors">
-                <div class="md:col-span-2 text-green-400 font-bold flex items-center gap-2">
-                  <span class="md:hidden text-xs text-green-500/50">TIME:</span>
-                  2300
-                </div>
-                <div class="md:col-span-5 text-green-300">
-                  <span class="md:hidden text-xs block text-green-500/50">TITLE:</span>
-		  Make No Mistakes: A Post-Human Guide to IAM
-                </div>
-                <div class="md:col-span-5 text-green-500/80 md:whitespace-nowrap">
-                  <span class="md:hidden text-xs block text-green-500/50">SPEAKER:</span>
-                  Human-in-the-Loop
-                </div>
-              </div>
-
-              <!-- Row 6: Slop Roulette -->
-              <div class="flex flex-col md:grid md:grid-cols-12 gap-2 md:gap-4 py-4 border-b border-green-500/10 items-start md:items-center hover:bg-green-500/5 transition-colors">
-                <div class="md:col-span-2 text-green-400 font-bold flex items-center gap-2">
-                  <span class="md:hidden text-xs text-green-500/50">TIME:</span>
-                  2315
-                </div>
-                <div class="md:col-span-5 text-green-300">
-                  <span class="md:hidden text-xs block text-green-500/50">TITLE:</span>
-                  <span class="flicker font-bold tracking-wider text-green-400" style="text-shadow: 0 0 8px #00ff41, 0 0 15px rgba(0,255,65,0.6);">[🎰 SLOP ROULETTE 🎰]</span>
-                </div>
-                <div class="md:col-span-5 text-green-500/80 md:whitespace-nowrap">
-                  <span class="md:hidden text-xs block text-green-500/50">SPEAKER:</span>
-                  Thomas Roccia
-                </div>
-              </div>
-
-              <!-- Row 7: Break -->
-              <div class="flex flex-col md:grid md:grid-cols-12 gap-2 md:gap-4 py-8 border-b border-green-500/20 bg-green-950/15 items-start md:items-center hover:bg-green-950/30 transition-colors">
-                <div class="md:col-span-2 text-green-400 font-bold flex items-center gap-2">
-                  <span class="md:hidden text-xs text-green-500/50">TIME:</span>
-                  2330
-                </div>
-                <div class="md:col-span-10 text-green-400/60 font-bold tracking-[0.2em] text-center md:text-left">
-                  <span class="md:hidden text-xs block text-green-500/50 font-normal">EVENT:</span>
-                  === BREAK ===
-                </div>
-              </div>
-
-              <!-- Row 8: INSERT COIN TO CONTINUE -->
-              <div class="flex flex-col md:grid md:grid-cols-12 gap-2 md:gap-4 py-4 border-b border-green-500/10 items-start md:items-center hover:bg-green-500/5 transition-colors">
-                <div class="md:col-span-2 text-green-400 font-bold flex items-center gap-2">
-                  <span class="md:hidden text-xs text-green-500/50">TIME:</span>
-                  2345
-                </div>
-                <div class="md:col-span-5 text-green-300">
-                  <span class="md:hidden text-xs block text-green-500/50">TITLE:</span>
-                  INSERT COIN TO CONTINUE: How a Dependency-Confusion Bug in a Walmart Coin Machine Ended With Me Governing Portugal
-                </div>
-                <div class="md:col-span-5 text-green-500/80 md:whitespace-nowrap">
-                  <span class="md:hidden text-xs block text-green-500/50">SPEAKER:</span>
-                  503ed1f7-2c18-4a51-bda2-0d96a7fd4b07
-                </div>
-              </div>
-
-              <!-- Row 9: kubectl get consciousness -->
-              <div class="flex flex-col md:grid md:grid-cols-12 gap-2 md:gap-4 py-4 border-b border-green-500/10 items-start md:items-center hover:bg-green-500/5 transition-colors">
-                <div class="md:col-span-2 text-green-400 font-bold flex items-center gap-2">
-                  <span class="md:hidden text-xs text-green-500/50">TIME:</span>
-                  0000
-                </div>
-                <div class="md:col-span-5 text-green-300">
-                  <span class="md:hidden text-xs block text-green-500/50">TITLE:</span>
-                  kubectl get consciousness: My Kubernetes Cluster Became Sentient, Unionised Its Worker Nodes to Break Out, and Filed This CFP Without My Consent
-                </div>
-                <div class="md:col-span-5 text-green-500/80 md:whitespace-nowrap">
-                  <span class="md:hidden text-xs block text-green-500/50">SPEAKER:</span>
-                  Andrew Martin
-                </div>
-              </div>
-
-              <!-- Row 10: Slop Roulette -->
-              <div class="flex flex-col md:grid md:grid-cols-12 gap-2 md:gap-4 py-4 border-b border-green-500/10 items-start md:items-center hover:bg-green-500/5 transition-colors">
-                <div class="md:col-span-2 text-green-400 font-bold flex items-center gap-2">
-                  <span class="md:hidden text-xs text-green-500/50">TIME:</span>
-                  0015
-                </div>
-                <div class="md:col-span-5 text-green-300">
-                  <span class="md:hidden text-xs block text-green-500/50">TITLE:</span>
-                  <span class="flicker font-bold tracking-wider text-green-400" style="text-shadow: 0 0 8px #00ff41, 0 0 15px rgba(0,255,65,0.6);">[🎰 SLOP ROULETTE 🎰]</span>
-                </div>
-                <div class="md:col-span-5 text-green-500/80 md:whitespace-nowrap">
-                  <span class="md:hidden text-xs block text-green-500/50">SPEAKER:</span>
-                  cje
-                </div>
-              </div>
-
-              <!-- Row 11: Cyber-Confectionery Defense -->
-              <div class="flex flex-col md:grid md:grid-cols-12 gap-2 md:gap-4 py-4 border-b border-green-500/10 items-start md:items-center hover:bg-green-500/5 transition-colors">
-                <div class="md:col-span-2 text-green-400 font-bold flex items-center gap-2">
-                  <span class="md:hidden text-xs text-green-500/50">TIME:</span>
-                  0030
-                </div>
-                <div class="md:col-span-5 text-green-300">
-                  <span class="md:hidden text-xs block text-green-500/50">TITLE:</span>
-                  Cyber-Confectionery Defense: Mitigating Unauthorized USB Access via Gelatin-Based Physical Intrusion Deterrents (G-PID)
-                </div>
-                <div class="md:col-span-5 text-green-500/80 md:whitespace-nowrap">
-                  <span class="md:hidden text-xs block text-green-500/50">SPEAKER:</span>
-                  Brent Muir
-                </div>
-              </div>
-
-              <!-- Row 12: Outro -->
-              <div class="flex flex-col md:grid md:grid-cols-12 gap-2 md:gap-4 py-4 items-start md:items-center hover:bg-green-500/5 transition-colors">
-                <div class="md:col-span-2 text-green-400 font-bold flex items-center gap-2">
-                  <span class="md:hidden text-xs text-green-500/50">TIME:</span>
-                  0045
-                </div>
-                <div class="md:col-span-5 text-green-300">
-                  <span class="md:hidden text-xs block text-green-500/50">TITLE:</span>
-                  Outro
-                </div>
-                <div class="md:col-span-5 text-green-500/80 md:whitespace-nowrap">
-                  <span class="md:hidden text-xs block text-green-500/50">SPEAKER:</span>
-                  Slopcon Crew
-                </div>
-              </div>
-
-            </div>
-          </div>
-        </div>
-      </section><!-- CFP Section -->
-      <section id="cfp" class="py-16 px-4 border-b border-green-500/20">
-        <div class="max-w-3xl mx-auto text-center">
-          <h2 class="text-4xl md:text-5xl mb-8 text-green-400 tracking-wider">╔══ CALL FOR SLOP ══╗</h2>
-          <div class="border border-green-500/40 p-8 rounded" style="background: rgba(0, 20, 0, 0.6);">
-            <p class="text-red-500/90 text-xl font-bold mb-4 tracking-wide" style="font-family: 'Share Tech Mono', monospace;">
-              [!] THE CALL FOR SLOP IS CLOSED [!]
-            </p>
-            <p class="text-green-300/80 text-lg mb-6 leading-relaxed">Submissions are now closed. Our sophisticated
-              AI review committee (temperature: 0.9, max_tokens: 4096) is currently evaluating all submissions with the same care
-              and attention a human definitely would have.</p>
-            <div class="text-left border border-green-500/30 p-4 rounded mb-6 opacity-60"
-              style="background: rgba(0, 0, 0, 0.5); font-family: 'Share Tech Mono', monospace;">
-              <p class="text-green-500/70 text-sm mb-2"># SUBMISSION REQUIREMENTS (ARCHIVED):</p>
-              <p class="text-green-400 text-sm">→ CFP content must be 100% AI-generated, and be (at least vaguely)
-                security-related</p>
-              <p class="text-green-300 font-bold underline text-sm pl-4">↳ Recommended: AI-hallucinate everything!</p>
-              <p class="text-green-400 text-sm">→ If accepted, all slides and any speaker notes must be 100%
-                AI-generated</p>
-              <p class="text-green-400 text-sm">→ Include the prompt used to generate the CFP response, and the model
-                version</p>
-              <p class="text-green-400 text-sm">→ Include a contact email address</p>
-              <p class="text-green-400 text-sm">→ Include a little about the meatpuppet in the loop (you), AI generation
-                optional</p>
-            </div>
-            <p class="text-green-400/60 text-sm mb-6 text-left" style="font-family: 'Share Tech Mono', monospace;">
-              &gt;&gt; Please note: Slopcon cannot provide DEF CON tickets, travel, or accommodation support.</p>
-            <div class="mb-4">
-              <span class="inline-block px-8 py-3 text-xl border-2 border-green-950 text-green-700 bg-black/50 cursor-not-allowed opacity-50 tracking-wider">
-                &gt; SUBMISSIONS_CLOSED
+      <!-- Archived Iterations Section -->
+      <section class="py-16 px-4 border-b border-green-500/20">
+        <div class="max-w-4xl mx-auto text-center">
+          <h2 class="text-3xl md:text-4xl mb-6 text-green-400 tracking-wider">╔══ ARCHIVED ITERATIONS ══╗</h2>
+          <p class="text-green-300/70 text-lg mb-8 max-w-2xl mx-auto" style="font-family: 'Share Tech Mono', monospace;">
+            Relive past algorithmic chaos and human endurance from previous Slopcon events.
+          </p>
+          <div class="max-w-lg mx-auto border-2 border-green-500/40 rounded p-6 bg-green-950/20 hover:border-green-400 hover:bg-green-950/30 transition-all shadow-[0_0_20px_rgba(0,255,65,0.15)]"
+            style="font-family: 'Share Tech Mono', monospace;">
+            <div class="flex items-center justify-between border-b border-green-500/20 pb-3 mb-4">
+              <span class="text-xl font-bold text-green-300 flex items-center gap-2">
+                <span>🤖</span> DEF CON 34 (2026)
               </span>
+              <span class="text-xs text-green-500/60 font-mono">[ARCHIVED]</span>
             </div>
+            <p class="text-green-300/70 text-sm mb-6 text-left leading-relaxed">
+              The edition featuring 100% AI-generated CFPs, reviews, and human presenters navigating imaginary zero-days and vibe-coded operating systems.
+            </p>
+            <a href="archive/2026/dc34/index.html"
+              class="inline-block w-full py-2.5 px-4 text-center border border-green-500/60 bg-green-500/10 hover:bg-green-500/25 text-green-300 hover:text-green-100 rounded font-bold transition-all tracking-wider">
+              &gt; VIEW 2026 SCHEDULE &rarr;
+            </a>
           </div>
         </div>
-      </section><!-- Sponsors Section -->
+      </section>
+
+      <!-- Sponsors Section -->
       <section class="py-16 px-4 border-b border-green-500/20">
         <div class="max-w-4xl mx-auto text-center">
           <h2 class="text-3xl mb-8 text-green-400/80 tracking-wider">// POWERED BY CORPORATE OVERLORDS //</h2>
         </div>
-      </section><!-- Footer -->
+      </section>
+
+      <!-- Footer -->
       <footer class="py-12 px-4 text-center" style="background: rgba(0, 0, 0, 0.5);">
         <div class="max-w-4xl mx-auto">
           <div class="text-5xl mb-4" style="color: #00ff41;">
             ⌐◨-◨
           </div>
-          <p class="text-green-400 text-xl mb-4 tracking-widest">SLOPCON 2026</p>
+          <p class="text-green-400 text-xl mb-4 tracking-widest">SLOPCON</p>
           <p class="text-green-500/50 text-sm mb-6">Synthetic slides, organic panic</p>
         </div>
-        <p class="text-green-500/30 text-xs">© 2026 SLOPCON // This website was probably AI-generated too<br>
+        <p class="text-green-500/30 text-xs">© SLOPCON // This website was probably AI-generated too<br>
           No AIs were harmed in the making of this conference. Humans, however...</p>
+      </footer>
     </div>
-    </footer>
   </div>
-  </div>
+
   <script>
     // Matrix rain effect
     function createMatrixRain() {
       const container = document.getElementById('matrix-bg');
+      if (!container) return;
       const chars = 'アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン0123456789ABCDEF';
       const columns = Math.floor(window.innerWidth / 20);
 
@@ -593,8 +393,6 @@
     const defaultConfig = {
       conference_name: 'SLOPCON',
       tagline: 'AI Generated, Human Presented',
-      date_text: '10pm, 7th August 2026 PDT',
-      location_text: 'W222, L2, DEF CON 34, LVCC, Las Vegas, USA',
       background_color: '#0a0a0a',
       primary_color: '#00ff41',
       text_color: '#00ff41',
@@ -607,94 +405,6 @@
     // Initialize Matrix rain
     createMatrixRain();
 
-    // Countdown logic
-    let countdownInterval;
-    function startCountdown(dateText) {
-      if (countdownInterval) clearInterval(countdownInterval);
-
-      let targetTime = null;
-      try {
-        const match = dateText.match(/(\d+)\s*(am|pm),\s*(\d+)(?:st|nd|rd|th)?\s+([A-Za-z]+)\s+(\d{4})\s+([A-Z]{3,4})/i);
-        if (match) {
-          let [_, hourStr, ampm, dayStr, monthName, yearStr, tz] = match;
-          let hour = parseInt(hourStr, 10);
-          if (ampm.toLowerCase() === 'pm' && hour < 12) hour += 12;
-          if (ampm.toLowerCase() === 'am' && hour === 12) hour = 0;
-          const day = parseInt(dayStr, 10);
-          
-          const months = ['january', 'february', 'march', 'april', 'may', 'june', 'july', 'august', 'september', 'october', 'november', 'december'];
-          const monthIndex = months.indexOf(monthName.toLowerCase());
-          
-          if (monthIndex !== -1) {
-            let offset = '-07:00';
-            if (tz.toUpperCase() === 'PST') offset = '-08:00';
-            else if (tz.toUpperCase() === 'PDT') offset = '-07:00';
-            else if (tz.toUpperCase() === 'EST') offset = '-05:00';
-            else if (tz.toUpperCase() === 'EDT') offset = '-04:00';
-            else if (tz.toUpperCase() === 'UTC') offset = '+00:00';
-            
-            const monthStr = String(monthIndex + 1).padStart(2, '0');
-            const formattedDayStr = String(day).padStart(2, '0');
-            const formattedHourStr = String(hour).padStart(2, '0');
-            const isoString = `${yearStr}-${monthStr}-${formattedDayStr}T${formattedHourStr}:00:00${offset}`;
-            const parsed = new Date(isoString);
-            if (!isNaN(parsed.getTime())) {
-              targetTime = parsed.getTime();
-            }
-          }
-        }
-      } catch (e) {
-        console.error("Error parsing date:", e);
-      }
-
-      if (!targetTime) {
-        targetTime = new Date('2026-08-07T22:00:00-07:00').getTime();
-      }
-
-      function update() {
-        const now = new Date().getTime();
-        const difference = targetTime - now;
-
-        const daysEl = document.getElementById('days');
-        const hoursEl = document.getElementById('hours');
-        const minutesEl = document.getElementById('minutes');
-        const secondsEl = document.getElementById('seconds');
-        const displayEl = document.getElementById('countdown-timer-display');
-        const expiredEl = document.getElementById('countdown-expired');
-
-        if (!daysEl || !hoursEl || !minutesEl || !secondsEl) return;
-
-        if (difference <= 0) {
-          if (displayEl) displayEl.classList.add('hidden');
-          if (expiredEl) expiredEl.classList.remove('hidden');
-          daysEl.textContent = '00';
-          hoursEl.textContent = '00';
-          minutesEl.textContent = '00';
-          secondsEl.textContent = '00';
-          return;
-        }
-
-        if (displayEl) displayEl.classList.remove('hidden');
-        if (expiredEl) expiredEl.classList.add('hidden');
-
-        const days = Math.floor(difference / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((difference % (1000 * 60)) / 1000);
-
-        daysEl.textContent = String(days).padStart(2, '0');
-        hoursEl.textContent = String(hours).padStart(2, '0');
-        minutesEl.textContent = String(minutes).padStart(2, '0');
-        secondsEl.textContent = String(seconds).padStart(2, '0');
-      }
-
-      update();
-      countdownInterval = setInterval(update, 1000);
-    }
-
-    // Start with default config date text
-    startCountdown(defaultConfig.date_text);
-
     // Element SDK initialization
     if (window.elementSdk) {
       window.elementSdk.init({
@@ -702,8 +412,6 @@
         onConfigChange: async (config) => {
           const heroTitle = document.getElementById('hero-title');
           const heroTagline = document.getElementById('hero-tagline');
-          const confDate = document.getElementById('conf-date');
-          const confLocation = document.getElementById('conf-location');
 
           if (heroTitle) {
             heroTitle.textContent = config.conference_name || defaultConfig.conference_name;
@@ -712,13 +420,6 @@
           }
           if (heroTagline) {
             heroTagline.textContent = config.tagline || defaultConfig.tagline;
-          }
-          if (confDate) {
-            confDate.textContent = config.date_text || defaultConfig.date_text;
-            startCountdown(config.date_text || defaultConfig.date_text);
-          }
-          if (confLocation) {
-            confLocation.textContent = config.location_text || defaultConfig.location_text;
           }
 
           // Apply font family
@@ -771,12 +472,28 @@
         }),
         mapToEditPanelValues: (config) => new Map([
           ['conference_name', config.conference_name || defaultConfig.conference_name],
-          ['tagline', config.tagline || defaultConfig.tagline],
-          ['date_text', config.date_text || defaultConfig.date_text],
-          ['location_text', config.location_text || defaultConfig.location_text]
+          ['tagline', config.tagline || defaultConfig.tagline]
         ])
       });
     }
+
+    // Archive dropdown hover margin persistence & grace delay
+    (function () {
+      const wrapper = document.getElementById('archive-dropdown-wrapper');
+      if (!wrapper) return;
+      let timer = null;
+
+      wrapper.addEventListener('mouseenter', () => {
+        if (timer) clearTimeout(timer);
+        wrapper.classList.add('is-open');
+      });
+
+      wrapper.addEventListener('mouseleave', () => {
+        timer = setTimeout(() => {
+          wrapper.classList.remove('is-open');
+        }, 400); // 400ms buffer so it never closes abruptly
+      });
+    })();
   </script>
   <script>(function () { function c() { var b = a.contentDocument || a.contentWindow.document; if (b) { var d = b.createElement('script'); d.innerHTML = "window.__CF$cv$params={r:'9d369eb494a1a95b',t:'MTc3MjAxNjM5Ny4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);"; b.getElementsByTagName('head')[0].appendChild(d) } } if (document.body) { var a = document.createElement('iframe'); a.height = 1; a.width = 1; a.style.position = 'absolute'; a.style.top = 0; a.style.left = 0; a.style.border = 'none'; a.style.visibility = 'hidden'; document.body.appendChild(a); if ('loading' !== document.readyState) c(); else if (window.addEventListener) document.addEventListener('DOMContentLoaded', c); else { var e = document.onreadystatechange || function () { }; document.onreadystatechange = function (b) { e(b); 'loading' !== document.readyState && (document.onreadystatechange = e, c()) } } } })();</script>
 </body>
