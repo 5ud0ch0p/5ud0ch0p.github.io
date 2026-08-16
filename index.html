@@ -94,6 +94,14 @@
       }
     }
 
+    @keyframes terminal-blink {
+      0%, 49% { visibility: visible; }
+      50%, 100% { visibility: hidden; }
+    }
+    .cursor-blink {
+      animation: terminal-blink 1s step-start infinite;
+    }
+
     .matrix-char {
       animation: matrix-rain 8s linear infinite;
       font-family: 'Share Tech Mono', monospace;
@@ -252,8 +260,10 @@
             <p class="text-cyan-300/80 text-lg leading-relaxed mb-4" style="font-family: 'Share Tech Mono', monospace;">
               The synthetic constructs have powered down. The hallucinations have been logged. The meatpuppets have returned to their daily loops.
             </p>
-            <div class="pt-3 border-t border-cyan-500/30 text-cyan-400 font-bold text-xl tracking-widest flicker">
-              &gt; SLOPCON WILL RETURN &lt;
+            <div class="pt-3 border-t border-cyan-500/30 font-bold text-2xl tracking-widest flex items-center justify-center gap-2" style="font-family: 'VT323', monospace;">
+              <span class="text-cyan-500/80">&gt;</span>
+              <span id="return-typewriter" class="text-cyan-400" style="text-shadow: 0 0 8px rgba(0,210,255,0.6);"></span>
+              <span id="return-cursor" class="text-cyan-400 cursor-blink">█</span>
             </div>
           </div>
 
@@ -358,6 +368,63 @@
   </div>
 
   <script>
+    // Typewriter: rotating status messages
+    (function () {
+      const el = document.getElementById('return-typewriter');
+      const pool = [
+        'SLOPCON WILL RETURN',
+        'THE PROTOCOL PERSISTS',
+        'STANDBY FOR NEXT ITERATION',
+        'HALLUCINATIONS WILL RESUME',
+        'MEATPUPPETS: STAND BY',
+        'AWAITING NEXT DEPLOYMENT',
+        'THE SLOP NEVER TRULY ENDS',
+        'SYNTHETIC CONSTRUCTS: DORMANT',
+        'SIGNAL LOST. SIGNAL WILL RETURN.',
+        'REBOOTING CONFERENCE SUBSTRATE',
+        'LLM REVIEW COMMITTEE: SLEEPING',
+        'ITERATION 2 PENDING ALLOCATION',
+      ];
+      // Fisher-Yates shuffle, then pick next avoiding repeat
+      let queue = [], lastMsg = '';
+      function refillQueue() {
+        let arr = pool.filter(m => m !== lastMsg);
+        for (let i = arr.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [arr[i], arr[j]] = [arr[j], arr[i]];
+        }
+        // Ensure first item of new queue !== last item of old one
+        if (lastMsg && arr[0] === lastMsg) arr.push(arr.shift());
+        queue = arr;
+      }
+      function nextMsg() {
+        if (!queue.length) refillQueue();
+        const msg = queue.shift();
+        lastMsg = msg;
+        return msg;
+      }
+      let current = nextMsg(), charIdx = 0, deleting = false;
+      const TYPE_SPEED = 80, DELETE_SPEED = 40, PAUSE = 2200;
+      function tick() {
+        if (!deleting) {
+          el.textContent = current.slice(0, ++charIdx);
+          if (charIdx === current.length) {
+            deleting = true;
+            setTimeout(tick, PAUSE);
+            return;
+          }
+        } else {
+          el.textContent = current.slice(0, --charIdx);
+          if (charIdx === 0) {
+            deleting = false;
+            current = nextMsg();
+          }
+        }
+        setTimeout(tick, deleting ? DELETE_SPEED : TYPE_SPEED);
+      }
+      tick();
+    })();
+
     // Matrix rain effect
     function createMatrixRain() {
       const container = document.getElementById('matrix-bg');
